@@ -490,6 +490,44 @@ tekst = odczytaj_tekst_z_pliku("text.txt")
 slowo_najw_wystapien, ilosc_wystapien = zlicz_wystapienia_slow(tekst)
 print(slowo_najw_wystapien, ilosc_wystapien)
 
+"""
+1. **min():** Znajduje klucz z najmniejszą wartością w słowniku.
+
+    ```python
+    min_key = min(wystąpienia, key=wystąpienia.get)
+    ```
+
+2. **sorted():** Sortuje klucze słownika na podstawie ich wartości.
+
+    ```python
+    sorted_keys = sorted(wystąpienia, key=wystąpienia.get, reverse=True)
+    ```
+
+3. **sum():** Sumuje wszystkie wartości w słowniku.
+
+    ```python
+    total_occurrences = sum(wystąpienia.values())
+    ```
+
+4. **items():** Zwraca listę krotek zawierających pary klucz-wartość.
+
+    ```python
+    key_value_pairs = wystąpienia.items()
+    ```
+
+5. **keys():** Zwraca listę kluczy w słowniku.
+
+    ```python
+    all_keys = wystąpienia.keys()
+    ```
+
+6. **values():** Zwraca listę wartości w słowniku.
+
+    ```python
+    all_values = wystąpienia.values()
+    ```
+"""
+
 ## ---------------------------------  ##
 ##            Zadanie 26              ##
 ## ---------------------------------  ##
