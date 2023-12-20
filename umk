@@ -1,0 +1,523 @@
+## ---------------------------------  ##
+##            Zadanie 1               ##
+## ---------------------------------  ##
+
+def bezwzgledna(a):
+    if a < 0:
+        return -a
+    else:
+        return a
+
+a = float(input("Podaj liczbę a: "))
+wynik = bezwzgledna(a)
+print("Wartość bezwzględna liczby a wynosi:", wynik)
+
+## ---------------------------------  ##
+##            Zadanie 2               ##
+## ---------------------------------  ##
+
+def reszta_z_dzielenia(a, b):
+    while a >= b:
+        a -= b
+    return a
+
+a = int(input("Podaj liczbę a: "))
+b = int(input("Podaj liczbę b: "))
+wynik = reszta_z_dzielenia(a, b)
+print("Reszta z dzielenia a przez b wynosi:", wynik)
+
+## ---------------------------------  ##
+##            Zadanie 3               ##
+## ---------------------------------  ##
+
+def czesc_calkowita(a, b):
+    reszta = reszta_z_dzielenia(a, b)
+    return (a - reszta) // b
+
+a = int(input("Podaj liczbę a: "))
+b = int(input("Podaj liczbę b: "))
+wynik = czesc_calkowita(a, b)
+print("Część całkowita z dzielenia a przez b wynosi:", wynik)
+
+## ---------------------------------  ##
+##            Zadanie 4               ##
+## ---------------------------------  ##
+def podloga(x):
+    if x < 0:
+        return int(x) - 1
+    else:
+        return int(x)
+
+x = float(input("Podaj liczbę x: "))
+wynik = podloga(x)
+print("Podłoga liczby x wynosi:", wynik)
+
+## ---------------------------------  ##
+##            Zadanie 5               ##
+## ---------------------------------  ##
+
+import math
+
+def powala(y):
+    return math.ceil(y)
+
+y = float(input("Podaj liczbę y: "))
+wynik = powala(y)
+print("Powała liczby y wynosi:", wynik)
+
+## ---------------------------------  ##
+##            Zadanie 6               ##
+## ---------------------------------  ##
+
+def liczba_rozwiazan(a, b, c):
+    delta = b**2 - 4*a*c
+    if delta > 0:
+        return 2
+    elif delta == 0:
+        return 1
+    else:
+        return 0
+
+a = float(input("Podaj a: "))
+b = float(input("Podaj b: "))
+c = float(input("Podaj c: "))
+wynik = liczba_rozwiazan(a, b, c)
+print("Liczba rozwiązań równania ax^2 + bx + c = 0 wynosi:", wynik)
+
+## ---------------------------------  ##
+##            Zadanie 7               ##
+## ---------------------------------  ##
+
+def nwd(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a
+
+def nww(a, b):
+    return abs(a * b) // nwd(a, b)
+
+m = int(input("Podaj m: "))
+n = int(input("Podaj n: "))
+nwd_wynik = nwd(m, n)
+nww_wynik = nww(m, n)
+print("NWD(m, n) wynosi:", nwd_wynik)
+print("NWW(m, n) wynosi:", nww_wynik)
+
+## ---------------------------------  ##
+##            Zadanie 8               ##
+## ---------------------------------  ##
+
+def dzielniki(n):
+    dzielniki_lista = []
+    for i in range(1, n+1):
+        if n % i == 0:
+            dzielniki_lista.append(i)
+    return dzielniki_lista
+
+n = int(input("Podaj liczbę n: "))
+wynik = dzielniki(n)
+print("Dzielniki liczby n to:", wynik)
+
+## ---------------------------------  ##
+##            Zadanie 9               ##
+## ---------------------------------  ##
+
+def czy_liczba_doskonala(n):
+    suma_dzielnikow = sum(i for i in range(1, n) if n % i == 0)
+    return suma_dzielnikow == n
+
+n = int(input("Podaj liczbę n: "))
+wynik = czy_liczba_doskonala(n)
+if wynik:
+    print("Liczba n jest liczbą doskonałą.")
+else:
+    print("Liczba n nie jest liczbą doskonałą.")
+
+## ---------------------------------  ##
+##            Zadanie 10              ##
+## ---------------------------------  ##
+
+def czy_liczba_pierwsza(n):
+    if n <= 1:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+n = int(input("Podaj liczbę n: "))
+wynik = czy_liczba_pierwsza(n)
+if wynik:
+    print("Liczba n jest liczbą pierwszą.")
+else:
+    print("Liczba n nie jest liczbą pierwszą.")
+
+## ---------------------------------  ##
+##            Zadanie 11              ##
+## ---------------------------------  ##
+
+def czy_liczby_zaprzyjaznione(n, m):
+    suma_dzielnikow_n = sum(i for i in range(1, n) if n % i == 0)
+    suma_dzielnikow_m = sum(i for i in range(1, m) if m % i == 0)
+    return suma_dzielnikow_n == m and suma_dzielnikow_m == n
+
+n = int(input("Podaj liczbę n: "))
+m = int(input("Podaj liczbę m: "))
+wynik = czy_liczby_zaprzyjaznione(n, m)
+if wynik:
+    print("Liczby n i m są liczbami zaprzyjaźnionymi.")
+else:
+    print("Liczby n i m nie są liczbami zaprzyjaźnionymi.")
+
+## ---------------------------------  ##
+##            Zadanie 12              ##
+## ---------------------------------  ##
+
+def czy_liczby_blizniacze(n, m):
+    return abs(n - m) == 2 and czy_liczba_pierwsza(n) and czy_liczba_pierwsza(m)
+
+n = int(input("Podaj liczbę n: "))
+m = int(input("Podaj liczbę m: "))
+wynik = czy_liczby_blizniacze(n, m)
+if wynik:
+    print("Liczby n i m są liczbami bliźniaczymi.")
+else:
+    print("Liczby n i m nie są liczbami bliźniaczymi.")
+
+## ---------------------------------  ##
+##            Zadanie 13              ##
+## ---------------------------------  ##
+
+def faktoryzacja(n):
+    czynniki = []
+    dzielnik = 2
+    while n > 1:
+        while n % dzielnik == 0:
+            czynniki.append(dzielnik)
+            n //= dzielnik
+        dzielnik += 1
+    return czynniki
+
+n = int(input("Podaj liczbę n: "))
+wynik = faktoryzacja(n)
+print("Faktoryzacja liczby n to:", wynik)
+
+## ---------------------------------  ##
+##            Zadanie 14              ##
+## ---------------------------------  ##
+
+def suma_odwrotnosci(n):
+    suma = 0
+    for i in range(1, n+1):
+        suma += 1/i
+    return suma
+
+n = int(input("Podaj liczbę n: "))
+wynik = suma_odwrotnosci(n)
+print("Suma odwrotności liczb naturalnych od 1 do n wynosi:", wynik)
+
+## ---------------------------------  ##
+##            Zadanie 15              ##
+## ---------------------------------  ##
+
+def czy_istnieje(a, k):
+    return k in a
+
+n = int(input("Podaj liczbę elementów listy: "))
+a = []
+for i in range(n):
+    liczba = int(input(f"Podaj {i+1} element listy: "))
+    a.append(liczba)
+
+k = int(input("Podaj wartość k: "))
+wynik = czy_istnieje(a, k)
+if wynik:
+    print("Istnieje element w liście, który ma wartość równą k.")
+else:
+    print("Nie istnieje element w liście o wartości k.")
+
+## ---------------------------------  ##
+##            Zadanie 16              ##
+## ---------------------------------  ##
+
+def ile_wyrazow_rownych(a, k):
+    count = 0
+    for i in a:
+        if i == k:
+            count += 1
+    return count
+
+n = int(input("Podaj liczbę elementów listy: "))
+a = []
+for i in range(n):
+    liczba = int(input(f"Podaj {i+1} element listy: "))
+    a.append(liczba)
+
+k = int(input("Podaj wartość k: "))
+wynik = ile_wyrazow_rownych(a, k)
+print(f"Ilość wyrazów a[i] równych {k} wynosi:", wynik)
+
+## ---------------------------------  ##
+##            Zadanie 17              ##
+## ---------------------------------  ##
+
+def srednia_arytmetyczna(a):
+    n = len(a)
+    if n == 0:
+        return 0
+    suma = sum(a)
+    return suma / n
+
+n = int(input("Podaj liczbę elementów listy: "))
+a = []
+for i in range(n):
+    liczba = int(input(f"Podaj {i+1} element listy: "))
+    a.append(liczba)
+
+wynik = srednia_arytmetyczna(a)
+print("Średnia arytmetyczna liczb a[i] wynosi:", wynik)
+
+## ---------------------------------  ##
+##            Zadanie 18              ##
+## ---------------------------------  ##
+
+def czy_istnieje_suma(a, b, x):
+    i = 0
+    j = len(b) - 1
+    while i < len(a) and j >= 0:
+        suma = a[i] + b[j]
+        if suma == x:
+            return True
+        elif suma < x:
+            i += 1
+        else:
+            j -= 1
+    return False
+
+n = int(input("Podaj liczbę elementów w tablicach A i B: "))
+A = []
+B = []
+for i in range(n):
+    liczba = int(input(f"Podaj {i+1} element tablicy A: "))
+    A.append(liczba)
+for i in range(n):
+    liczba = int(input(f"Podaj {i+1} element tablicy B: "))
+    B.append(liczba)
+
+x = int(input("Podaj liczbę x: "))
+wynik = czy_istnieje_suma(A, B, x)
+if wynik:
+    print("Istnieją a ∈ A i b ∈ B takie, że x = a + b.")
+else:
+    print("Nie istnieją a ∈ A i b ∈ B takie, że x = a + b.")
+
+## ---------------------------------  ##
+##            Zadanie 19              ##
+## ---------------------------------  ##
+
+def potega_binarna(x, n):
+    binary_n = bin(n)[2:]  # Konwersja liczby n na postać binarną i usunięcie prefiksu '0b'
+    result = 1
+    for bit in binary_n:
+        result *= result
+        if bit == '1':
+            result *= x
+    return result
+
+# Przykład użycia
+x = float(input("Podaj wartość x: "))
+n = int(input("Podaj liczbę n (w postaci binarnej): "), 2)  # Konwersja z postaci binarnej na dziesiętną
+wynik = potega_binarna(x, n)
+print(f"Wynik {x}^{n} wynosi:", wynik)
+
+## ---------------------------------  ##
+##            Zadanie 20              ##
+## ---------------------------------  ##
+
+def lider_w_zbiorze(X):
+    counts = {}
+    for element in X:
+        counts[element] = counts.get(element, 0) + 1
+    
+    for element, count in counts.items():
+        if count > len(X) // 2:
+            return element
+    return None
+
+# Przykład użycia
+n = int(input("Podaj liczbę elementów w zbiorze X: "))
+X = []
+for i in range(n):
+    element = int(input(f"Podaj {i+1} element zbioru X: "))
+    X.append(element)
+
+wynik = lider_w_zbiorze(X)
+if wynik is not None:
+    print("Lider w zbiorze X to:", wynik)
+else:
+    print("Zbiór X nie zawiera lidera.")
+
+## ---------------------------------  ##
+##            Zadanie 21              ##
+## ---------------------------------  ##
+
+def pierwiastek_kwadratowy(a, epsilon=1e-10, max_iter=1000):
+    x = a
+    iteracja = 0
+    while abs(x*x - a) > epsilon and iteracja < max_iter:
+        x = 0.5 * (x + a / x)
+        iteracja += 1
+    return x
+
+# Przykład użycia
+a = float(input("Podaj liczbę a: "))
+epsilon = float(input("Podaj dokładność obliczeń (ε): "))
+max_iter = int(input("Podaj maksymalną liczbę iteracji: "))
+wynik = pierwiastek_kwadratowy(a, epsilon, max_iter)
+print(f"Pierwiastek kwadratowy z liczby {a} wynosi:", wynik)
+
+## ---------------------------------  ##
+##            Zadanie 22              ##
+## ---------------------------------  ##
+
+def sortowanie_babelkowe(a):
+    n = len(a)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if a[j] > a[j+1]:
+                a[j], a[j+1] = a[j+1], a[j]
+    return a
+
+# Przykład użycia
+n = int(input("Podaj liczbę elementów ciągu: "))
+a = []
+for i in range(n):
+    liczba = float(input(f"Podaj {i+1} element ciągu: "))
+    a.append(liczba)
+
+wynik = sortowanie_babelkowe(a)
+print("Ciąg po posortowaniu niemalejąco:", wynik)
+
+## ---------------------------------  ##
+##            Zadanie 23              ##
+## ---------------------------------  ##
+
+def najdluzszy_podciag_parzystych(a):
+    max_dlugosc = 0
+    dlugosc = 0
+    for liczba in a:
+        if liczba % 2 == 0:
+            dlugosc += 1
+            max_dlugosc = max(max_dlugosc, dlugosc)
+        else:
+            dlugosc = 0
+    return max_dlugosc
+
+# Przykład użycia
+n = int(input("Podaj liczbę elementów ciągu: "))
+a = []
+for i in range(n):
+    liczba = int(input(f"Podaj {i+1} element ciągu: "))
+    a.append(liczba)
+
+wynik = najdluzszy_podciag_parzystych(a)
+print("Długość najdłuższego spójnego podciągu liczb parzystych wynosi:", wynik)
+
+## ---------------------------------  ##
+##            Zadanie 24              ##
+## ---------------------------------  ##
+
+def suma_najwiekszego_podciagu(a):
+    max_suma = a[0]
+    suma = a[0]
+    start = 0
+    koniec = 0
+    temp_start = 0
+    for i in range(1, len(a)):
+        if suma + a[i] > a[i]:
+            suma += a[i]
+        else:
+            suma = a[i]
+            temp_start = i
+        if suma > max_suma:
+            max_suma = suma
+            start = temp_start
+            koniec = i
+    return max_suma, start, koniec
+
+# Przykład użycia
+n = int(input("Podaj liczbę elementów ciągu: "))
+a = []
+for i in range(n):
+    liczba = int(input(f"Podaj {i+1} element ciągu: "))
+    a.append(liczba)
+
+suma, start, koniec = suma_najwiekszego_podciagu(a)
+print(f"Suma największego spójnego podciągu wynosi: {suma}")
+print(f"Podciąg o indeksach od {start} do {koniec}: {a[start:koniec+1]}")
+
+## ---------------------------------  ##
+##            Zadanie 25              ##
+## ---------------------------------  ##
+
+#  ***
+#      Jako argument przyjmuje text i wypisuje słowo 
+#      z największą ilością wystąpień
+#                                                ***
+
+import json
+from collections import defaultdict
+
+def zlicz_wystapienia_slow(tekst):
+    slowa = tekst.replace(",", "").replace(".", "").replace(":", "").replace(";", "").lower().split()
+    wystapienia = defaultdict(int)
+    
+    for slowo in slowa:
+        wystapienia[slowo] += 1
+    
+    json_wystapienia = json.dumps(wystapienia, indent=4)
+
+    slowo_najw_wystapien = max(wystapienia, key=wystapienia.get)
+    ilosc_wystapien = wystapienia[slowo_najw_wystapien]
+    return slowo_najw_wystapien, ilosc_wystapien
+
+def odczytaj_tekst_z_pliku(nazwa_pliku):
+    with open(nazwa_pliku, 'r') as plik:
+        text = plik.read()
+    return text
+
+tekst = odczytaj_tekst_z_pliku("text.txt")
+slowo_najw_wystapien, ilosc_wystapien = zlicz_wystapienia_slow(tekst)
+print(slowo_najw_wystapien, ilosc_wystapien)
+
+## ---------------------------------  ##
+##            Zadanie 26              ##
+## ---------------------------------  ##
+
+#  ***
+#      Zlicza liczby co 3 
+#                                                ***
+
+odstep = 3
+def zliczanie(odstep):
+    count = 0  
+    for zliczone in range(1, 1000, odstep): 
+        count += 1 
+    return count
+zliczone = zliczanie(odstep)
+print(zliczone) 
+
+## ---------------------------------  ##
+##            Zadanie 27              ##
+## ---------------------------------  ##
+
+#  ***
+#      Suma cyfr
+#                                                ***
+
+liczba = "8172018962"
+liczba = [int(cyfra) for cyfra in liczba]
+suma = 0
+for i in liczba:
+    suma += i
+print(liczba, suma)
