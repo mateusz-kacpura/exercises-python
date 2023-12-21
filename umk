@@ -559,3 +559,118 @@ suma = 0
 for i in liczba:
     suma += i
 print(liczba, suma)
+
+## ---------------------------------  ##
+##            Zadanie 28              ##
+## ---------------------------------  ##
+licznik = 0
+wartosci = []
+
+def suma(wartosci):
+    suma = 0
+    for i in wartosci:
+        suma += int(i)
+    return suma
+
+with open('dane_pac.txt', 'rt', encoding='utf-8') as g1:
+    for line in g1:
+        linia = [liczba for liczba in line.split()]
+        wiersz = []
+
+        # Extracting names
+        arg_f_name = linia[0]
+        arg_s_name = linia[1]
+        wiersz.append(arg_f_name)
+        wiersz.append(arg_s_name)
+
+        # Checking if the third element is a digit
+        if linia[2].isdigit():
+            age = linia[2]
+            result = linia[3]
+        else:
+            age = linia[3]
+            result = linia[4]
+        
+        wiersz.append(age)
+        wiersz.append(result)
+        
+        print(wiersz)
+        
+        # Condition isn't the norm
+        
+        if int(result) > 440 or int(result) < 140:     
+            licznik += 1
+            wartosci.append(result)
+
+        # clear the row
+        wiersz.clear()
+
+    suma = suma(wartosci)
+    print(licznik)
+    print(suma/licznik)
+
+## ---------------------------------  ##
+##            Zadanie 29              ##
+## ---------------------------------  ##
+
+"""Odszyfrowywanie zaszyforwanego tekstu"""
+
+def decrypt_message(ciphertext, key):
+    decrypted_text = ''
+    reverse_key = {v: k for k, v in key.items()}  # Tworzymy odwrócony klucz
+    for char in ciphertext:
+        decrypted_text += reverse_key.get(char, char)
+    return decrypted_text
+
+# Przykładowa wiadomość zaszyfrowana
+ciphertext = "FEŃ6YIAOAŹ6YEP6SJR6KBDGTEŃÓEŃŚ6YUÓKŃYU46YIAN6YEP6OAKBŃŹ6KBDGTEŃÓEŃŚ6TAOIGLKEGTJŚ3"
+
+# Przykładowy klucz
+key = {'a': 'A', 'ą': 'H', 'b': 'S', 'c': 'K', 'ć': 'R', 'd': 'C', 'e': 'Ń', 'ę': 'P', 'f': 'Z', 'g': 'Ż', 'h': 'Ą', 'i': 'E', 'j': 'Ź', 'k': 'Ó', 'l': 'Ć', 'ł': 'D', 'm': 'Ś', 'n': 'F', 'ń': 'N', 'o': 'G', 'ó': 'W', 'p': 'Ł', 'r': 'O', 's': 'Y', 'ś': 'L', 't': 'I', 'u': 'U', 'w': 'T', 'y': 'J', 'z': 'B', 'ź': 'Ę', 'ż': 'M', '.': '4', ',': '2', '!': '3', '?': '5', ';': '1', '-': '7', ' ': '6', ':': '0'}
+decrypted_message = decrypt_message(ciphertext, key)
+
+print("Odszyfrowana wiadomość:", decrypted_message)
+
+
+## ---------------------------------  ##
+##            Zadanie 30              ##
+## ---------------------------------  ##
+
+def system(decimal_number, base):
+    if not isinstance(decimal_number, int) or not isinstance(base, int):
+        return "Both arguments must be integers."
+
+    if decimal_number < 0 or base < 2:
+        return "Decimal number should be non-negative, and base should be greater than or equal to 2."
+
+    if base > 36:
+        return "Base should be 36 or lower."
+
+    digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+    if decimal_number == 0:
+        return "0"
+
+    result = ""
+    while decimal_number > 0:
+        remainder = decimal_number % base
+        result = digits[remainder] + result
+        decimal_number //= base
+
+    return result
+
+with open('dane.txt', 'rt') as g1:
+    for line in g1:
+        linia_t = [liczba for liczba in line.split()]
+        input = (linia_t[0])
+        arg_1, arg_2 = int(linia_t[1]), int(linia_t[2])
+        DEC = int(input, arg_1)
+        SYSTEM = system(DEC, arg_2)
+        print (f'Liczba {linia_t[0]} w systemie {linia_t[1]} konwersja do systemu {linia_t[2]} -> {SYSTEM}')
+
+####################################
+ #  8                             #
+ #  OCT 5723 -> HEX 0x165b        #
+ #  10                            #
+ #  DEC 2019 -> BIN 0b11111100011 #
+####################################
